@@ -1,4 +1,4 @@
-import reducers from "../../reducers";
+import reducers from "../../reducers/todo";
 
 test("adds todo", async () => {
   const state = { todos: ["a"] };

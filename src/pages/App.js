@@ -1,15 +1,14 @@
 
-import React, { useContext } from "react";
-
-import { usePersistedContext, usePersistedReducer } from "./utils/usePersist";
-import Store from "../context";
-import reducers from "../reducers";
+import React, { useContext, useReducer } from "react";
+import { usePersistedContext, usePersistedReducer } from "../utils/usePersist";
+import StoreTodo from "../context/todo";
+import reducers from "../reducers/todo";
 
 import TodoList from "../components/TodoList";
 import TodoForm from "../components/TodoForm";
 
 export default () => {
-    const globalStore = usePersistedContext(useContext(Store), "state");
+    const globalStore = usePersistedContext(useContext(StoreTodo), "state");
 
     const [state, dispatch] = usePersistedReducer(
       useReducer(reducers, globalStore),
@@ -17,9 +16,9 @@ export default () => {
     );
   
     return (
-      <Store.Provider value={{ state, dispatch }}>
+      <StoreTodo.Provider value={{ state, dispatch }}>
         <TodoForm />
         <TodoList />
-      </Store.Provider>
+      </StoreTodo.Provider>
     );
   }

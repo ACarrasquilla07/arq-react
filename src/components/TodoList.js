@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import Store from "../context";
+import StoreTodo from "../context/todo";
 import { TodoHeader } from "./TodoHeader";
 
 export default () => {
-  const { state, dispatch } = useContext(Store);
+  const { state, dispatch } = useContext(StoreTodo);
 
   const pluralize = count =>
     count > 1 ? `There are ${count} todos.` : `There is ${count} todo.`;

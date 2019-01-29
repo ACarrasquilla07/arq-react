@@ -1,7 +1,7 @@
 import React from "react";
 
 // Initial Data
-const Store = React.createContext({
+const Context = React.createContext({
   todos: [
     "Buy milk",
     "Some eggs",
@@ -9,4 +9,4 @@ const Store = React.createContext({
   ]
 });
 
-export default Store;
+export default Context;

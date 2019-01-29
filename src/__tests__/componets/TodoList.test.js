@@ -2,8 +2,8 @@ import React from "react";
 import Enzyme, { mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import Store from "../../context";
-import reducers from "../../reducers";
+import StoreTodo from "../../context/todo";
+import reducers from "../../reducers/todo";
 import TodoList from "../../components/TodoList";
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -12,9 +12,9 @@ test("<TodoList /> #display", async () => {
   const todos = ["a", "b", "c"];
   const dispatch = () => {};
   const list = mount(
-    <Store.Provider value={{ state: { todos }, dispatch }}>
+    <StoreTodo.Provider value={{ state: { todos }, dispatch }}>
       <TodoList />
-    </Store.Provider>
+    </StoreTodo.Provider>
   );
 
   expect(list.find("li").length).toEqual(3);
@@ -40,9 +40,9 @@ test("<TodoList /> #completeCalls", async () => {
   const todos = ["a", "b", "c"];
   const dispatch = jest.fn();
   const list = mount(
-    <Store.Provider value={{ state: { todos }, dispatch }}>
+    <StoreTodo.Provider value={{ state: { todos }, dispatch }}>
       <TodoList />
-    </Store.Provider>
+    </StoreTodo.Provider>
   );
 
   list.find("button").forEach(b => b.simulate("click"));
@@ -55,9 +55,9 @@ test("<TodoList /> #completeMutates", async () => {
     state = reducers(state, action);
   };
   const list = mount(
-    <Store.Provider value={{ state, dispatch }}>
+    <StoreTodo.Provider value={{ state, dispatch }}>
       <TodoList />
-    </Store.Provider>
+    </StoreTodo.Provider>
   );
 
   await list

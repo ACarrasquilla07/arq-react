@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import Store from "../context";
+import StoreTodo from "../context/todo";
 
 export default () => {
-  const { dispatch } = useContext(Store);
+  const { dispatch } = useContext(StoreTodo);
 
   const [todo, setTodo] = useState("");
 
