@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import StoreTodo from "../context/todo";
-import { TodoHeader } from "./TodoHeader";
+import TodoHeader from "./TodoHeader";
 
 export default () => {
   const { state, dispatch } = useContext(StoreTodo);
