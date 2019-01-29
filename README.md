@@ -1,122 +1,35 @@
-# React Hooks Todo App
+# Base React
 
-> A trial to achieve a correct approach. Trying to get **rid off using Redux**, make **contexts more useful** with **useReducer** and make components **"easy-to-test simple functions"**.
-
-[![Edit react-usecontext-todo-app](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/f/react-hooks-todo-app/tree/master/)
-
----
-
-A **highly decoupled**, **testable** TodoList app that uses React hooks.
-
-This is a training repo to learn about new hooks feature of React and creating a testable environment.
-
-- **Zero-dependency**
-- **No** class components
-- Uses `Context` to share a **global state**
-- Uses `useReducer` to manage **state actions**
-- `useState` to create local state
-- Decoupled state logic (Actions)
-- Testable components (Uses Jest + Enzyme for tests)
-- Custom Hooks for **persisting state**.
-
-For better approaches please open Pull Requests
+- **Cero-dependencia**
+- **No** componentes de clase
+- Utiliza `Context` para compartir un **estado global**
+- Utiliza `useReducer` para gestionar **acciones de estado**
+- `useState` para crear un estado local
+- Lógica de estado desacoplado (Acciones)
+- Componentes comprobables (Utiliza Jest + Enzyme para pruebas)
+- Ganchos personalizados para **estado persistente**.
 
 ## Summary
 
 ### 1. **Context**:
 
-The main approach was to get rid off Redux and use **React Contexts** instead. With the composition of `useState`, `useContext` I created a global state. And passed it into a **custom hook** called `useTodos`. `useTodos` curries `useState` output and generates a state manager which will be passed into `TodoContext.Provider` to be used as a global state.
+El enfoque principal es desplazar Redux y utilizar **React Contexts** en su lugar. Con la composición de `useState`,` useContext` para crear un estado global. Y lo pasó a un **hook personalizado** llamado `useTodos`. `useTodos` donde `useState` genera un administrador de estado que se pasará a `TodoContext.Provider` para usarlo como estado global.
 
-```jsx
-function App() {
-  // create a global store to store the state
-  const globalStore = useContext(Store);
+### 2. **The reducer**:
 
-  // `todos` will be a state manager to manage state.
-  const [state, dispatch] = useReducer(reducer, globalStore);
-
-  return (
-    // State.Provider passes the state and dispatcher to the down
-    <Store.Provider value={{ state, dispatch }}>
-      <TodoList />
-      <TodoForm />
-    </Store.Provider>
-  );
-}
-```
-
-### 2. **The Reducer**:
-
-The second approach was to seperate the main logic, just as the **actions** of Redux. But these are fully functional, every function returns whole state.
-
-```js
-// Reducer is the classical reducer that we know from Redux.
-// used by `useReducer`
-export default function reducer(state, action) {
-  switch (action.type) {
-    case "ADD_TODO":
-      return {
-        ...state,
-        todos: [...state.todos, action.payload]
-      };
-    case "COMPLETE":
-      return {
-        ...state,
-        todos: state.todos.filter(t => t !== action.payload)
-      };
-    default:
-      return state;
-  }
-}
-```
+El segundo enfoque fue separar la lógica principal, al igual que las **actions** de Redux. Pero estos son completamente funcionales, cada función devuelve el estado completo.
 
 ### 3. **State and Dispatcher**
 
-I reach out **state and dispathcer** of context using `useContext` and I can reach to the `actions`.
-
-```js
-import React, { useContext } from "react";
-import Store from "../context";
-
-export default function TodoForm() {
-  const { state, dispatch } = useContext(Store);
-  // use `state.todos` to get todos
-  // use `dispatch({ type: 'ADD_TODO', payload: 'Buy milk' })`
-```
+Obtener los **state y dispatcher** del contexto usando `useContext` y puedo llegar a las `actions`.
 
 ### 4. **Persistence with custom hooks**:
 
-I created custom hooks to persist state on `localStorage`
-
-```js
-import { useEffect } from "react";
-
-// Accepts `useContext` as first parameter and returns cached context.
-export function usePersistedContext(context, key = "state") {
-  const persistedContext = localStorage.getItem(key);
-  return persistedContext ? JSON.parse(persistedContext) : context;
-}
-
-// Accepts `useReducer` as first parameter and returns cached reducer.
-export function usePersistedReducer([state, dispatch], key = "state") {
-  useEffect(() => localStorage.setItem(key, JSON.stringify(state)), [state]);
-  return [state, dispatch];
-}
-```
-
-The `App` function will be:
-
-```js
-function App () {
-  const globalStore = usePersistedContext(useContext(Store));
-
-  // `todos` will be a state manager to manage state.
-  const [state, dispatch] = usePersistedReducer(useReducer(reducer, globalStore));
-```
+Se crear un hook personalizados para mantener el estado en `localStorage`
 
 ### 5. **Everything is testable decoupled**:
 
-The last but most important part of the approach is to make all the parts testable. They don't tie to eachother which makes me to write tests easily.
+La última pero más importante parte del enfoque es hacer que todas las partes sean comprobables. No se relacionan entre sí, lo que me hace escribir pruebas fácilmente.
 
 ## License
 MIT

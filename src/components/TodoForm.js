@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import Store from "../context";
 
-export default function TodoForm() {
+export default () => {
   const { dispatch } = useContext(Store);
 
   const [todo, setTodo] = useState("");
