@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import StoreTodo from "../context/todo";
 
-export default function todoForm() {
+export default () => {
   const { dispatch } = useContext(StoreTodo);
 
   const [todo, setTodo] = useState("");
@@ -16,7 +16,9 @@ export default function todoForm() {
   }
 
   function handleSubmitForm(event) {
-    if (event.keyCode === 13) handleTodoAdd();
+    if (event.keyCode === 13){ 
+      handleTodoAdd();
+    }
   }
 
   return (

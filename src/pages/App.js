@@ -9,12 +9,8 @@ import TodoForm from "../components/TodoForm";
 
 export default () => {
     const globalStore = usePersistedContext(useContext(StoreTodo), "state");
-
-    const [state, dispatch] = usePersistedReducer(
-      useReducer(reducers, globalStore),
-      "state" 
-    );
-  
+    const [state, dispatch] = usePersistedReducer(useReducer(reducers, globalStore),"state");
+    
     return (
       <StoreTodo.Provider value={{ state, dispatch }}>
         <TodoForm />
