@@ -3,7 +3,7 @@ import Enzyme, { mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import Store from "../../context";
-import reducer from "../../reducer";
+import reducers from "../../reducers";
 import TodoList from "../../components/TodoList";
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -52,7 +52,7 @@ test("<TodoList /> #completeCalls", async () => {
 test("<TodoList /> #completeMutates", async () => {
   let state = { todos: ["a", "b", "c"] };
   const dispatch = action => {
-    state = reducer(state, action);
+    state = reducers(state, action);
   };
   const list = mount(
     <Store.Provider value={{ state, dispatch }}>
