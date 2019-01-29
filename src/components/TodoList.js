@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import StoreTodo from "../context/todo";
 import { TodoHeader } from "./TodoHeader";
 
-export default () => {
+export default function todoList(){
   const { state, dispatch } = useContext(StoreTodo);
 
   const pluralize = count =>

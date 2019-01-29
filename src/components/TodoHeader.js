@@ -1,6 +1,6 @@
 import React from "react";
 
-export const TodoHeader = (props) => (
+export const todoHeader = (props) => (
   <div className="row">
     <div className="col-md-8">
       <h5>Todo List</h5>
