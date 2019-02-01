@@ -1,7 +1,7 @@
 
 import React from "react";
-import Load from "../components/Load";
+import Counter from "../components/Counter";
 
 export default () => {
-    return (<div><Load /></div>);
+    return (<div><Counter /></div>);
 }
