@@ -1,25 +1,18 @@
+import React, { useContext, useReducer } from "react";
+import StoreTodo from "../context/todo";
+import reducers from "../reducers/todo";
 
-import React, { useState } from "react";
-import { ThemeContext, themes } from "../context/theme";
-import Botton from "../components/Botton";
-
-//TODO: Crear el componente Input con base al componente Botton
-import Input from "../components/Input";
+import TodoList from "../components/TodoList";
+import TodoForm from "../components/TodoForm";
 
 export default () => {
-    const [myTheme, setMyTheme] = useState(themes.dark);
-    function toggleTheme() {
-        setMyTheme(myTheme === themes.dark
-            ? themes.light
-            : themes.dark);
-    }
-    //TODO: agregar el valor del contexto en el provider del contexto (<ThemeContext.Provider value=...)
+    const globalStore = useContext(StoreTodo);
+    const [state, dispatch] = useReducer(reducers, globalStore);
+    
     return (
-        <ThemeContext.Provider >
-            <Botton onClick={toggleTheme}>
-                Change me here!!
-            </Botton> <br />
-            <Input defaultValue={JSON.stringify(myTheme)} size={100}/>
-        </ThemeContext.Provider>
+      <StoreTodo.Provider value={{ state, dispatch }}>
+        <TodoForm />
+        <TodoList />
+      </StoreTodo.Provider>
     );
-}
+  }
