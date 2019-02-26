@@ -6,7 +6,6 @@ WORKDIR /usr/src/app
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
 COPY package.json  /usr/src/app/package.json
-COPY .babelrc /usr/src/app/.babelrc
 COPY . /usr/src/app
 
 RUN npm install --silent 
