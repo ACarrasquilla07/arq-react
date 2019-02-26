@@ -1,12 +1,7 @@
 export default function reducer(state, action) {
   switch (action.type) {
     case "ADD_TODO":
-      // return current state if empty
       if (!action.payload) {
-        return state;
-      }
-      // return current state if duplicate
-      if (state.todos.includes(action.payload)) {
         return state;
       }
       return {
@@ -16,7 +11,12 @@ export default function reducer(state, action) {
     case "COMPLETE":
       return {
         ...state,
-        todos: state.todos.filter(t => t !== action.payload)
+        todos: state.todos.filter(t => t.id !== action.payload)
+      };
+    case "SET_TODO":
+      return {
+        ...state,
+        todos: action.payload.filter(t => !t.complete)
       };
     default:
       return state;

@@ -11,13 +11,14 @@
     "react-scripts": "2.0.3"
   },
   "devDependencies": {
-    "enzyme": "3.7.0",
-    "enzyme-adapter-react-16": "1.6.0"
+    "json-server": "^0.14.2",
+    "react-testing-library": "^5.6.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start | ./node_modules/.bin/json-server --watch db.json --port 8080",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom  --coverage",
+    "test": "react-scripts test --env=jsdom",
+    "test:coverage": "react-scripts test --env=jsdom  --coverage",
     "eject": "react-scripts eject"
   },
   "browserslist": [
@@ -32,6 +33,8 @@
       "src/reducers/**/*.js",
       "src/utils/**/*.js",
       "src/pages/**/*.js",
+      "src/context/**/*.js",
+      "src/api/**/*.js",
       "!**/node_modules/**"
     ]
   }

@@ -1,46 +1,68 @@
 import React, { useContext, useState } from "react";
-import StoreTodo from "../context/todo";
+import { Todo } from "../context/todo";
+import TodoConsumer from "../api/TodoConsumer";
 
-export default () => {
-  const { dispatch } = useContext(StoreTodo);
+const TodoForm = () => {
+  const { dispatch } = useContext(Todo);
 
   const [todo, setTodo] = useState("");
+  const [error, setError] = useState(null);
 
   function handleTodoChange(e) {
     setTodo(e.target.value);
   }
 
   function handleTodoAdd() {
-    dispatch({ type: "ADD_TODO", payload: todo });
-    setTodo("");
+    TodoConsumer.add(todo, (status) => {
+      if (!status.error) {
+        dispatch({ type: "ADD_TODO", payload: status.item });
+        setTodo("");
+      } else {
+        setError(status.error);
+      }
+    });
   }
 
   function handleSubmitForm(event) {
-    if (event.keyCode === 13){ 
+    if (event.keyCode === 13) {
       handleTodoAdd();
     }
   }
+  return (<>
+    <Form
+      error={error}
+      todo={todo}
+      handleTodoAdd={handleTodoAdd}
+      handleSubmitForm={handleSubmitForm}
+      handleTodoChange={handleTodoChange}
+    />
+  </>);
+};
 
-  return (
-    <div className="row">
-      <div className="col-md-12">
-        <br />
-        <div className="input-group">
-          <input
-            className="form-control"
-            value={todo}
-            autoFocus={true}
-            placeholder="Enter new todo"
-            onKeyUp={handleSubmitForm}
-            onChange={handleTodoChange}
-          />
-          <div className="input-group-append">
-            <button className="btn btn-primary" onClick={handleTodoAdd}>
-              Add
-            </button>
-          </div>
+
+const Form = ({ todo, error, handleTodoAdd, handleSubmitForm, handleTodoChange }) =>
+  <div className="row">
+    <div className="col-md-12">
+      <br />
+      <div className="input-group">
+        <input
+          data-testid="input-data"
+          className={(error && "form-control is-valid") || "form-control"}
+          value={todo}
+          autoFocus={true}
+          placeholder="Enter new todo"
+          onKeyUp={handleSubmitForm}
+          onChange={handleTodoChange}
+        />
+
+        <div className="input-group-append">
+          <button data-testid="btn-add" className="btn btn-primary" onClick={handleTodoAdd}>
+            Add
+          </button>
         </div>
       </div>
+      {error && <small className="text-danger" >Request failed</small>}
     </div>
-  );
-}
+  </div>;
+
+export default TodoForm;

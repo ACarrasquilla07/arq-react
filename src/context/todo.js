@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useContext, useReducer } from "react";
+
+import reducers from "../reducers/todo";
+
+import TodoList from "../components/TodoList";
+import TodoForm from "../components/TodoForm";
 
 // Initial Data
-const Context = React.createContext({
-  todos: [
-    "Buy milk",
-    "Some eggs",
-    "Go to work"
-  ]
+export const Todo = React.createContext({
+  todos: []
 });
 
-export default Context;
+export default () => {
+  const globalStore = useContext(Todo);
+  const [state, dispatch] = useReducer(reducers, globalStore);
+  return (
+    <Todo.Provider value={{ state, dispatch }}>
+      <TodoForm />
+      <TodoList />
+    </Todo.Provider>
+  );
+};
+
