@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import { Todo } from "../context/todo";
+import { GlobalContext } from "../context/context";
 import TodoConsumer from "../api/TodoConsumer";
 
 const TodoForm = () => {
-  const { dispatch } = useContext(Todo);
+  const { dispatch } = useContext(GlobalContext);
 
   const [todo, setTodo] = useState("");
   const [error, setError] = useState(null);
@@ -55,7 +55,7 @@ const Form = ({ todo, error, handleTodoAdd, handleSubmitForm, handleTodoChange }
           onChange={handleTodoChange}
         />
 
-        <div className="input-group-append">
+        <div   className="input-group-append">
           <button data-testid="btn-add" className="btn btn-primary" onClick={handleTodoAdd}>
             Add
           </button>

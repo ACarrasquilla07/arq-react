@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState, useCallback } from "react";
-import { Todo } from "../context/todo";
+import { GlobalContext } from "../context/context";
 import TodoHeader from "./TodoHeader";
 import TodoConsumer from "../api/TodoConsumer";
 
 const TodoList = () => {
-  const { state, dispatch } = useContext(Todo);
+  const { state, dispatch } = useContext(GlobalContext);
   const [isResult, setIsResult] = useState(null);
 
   function handleComplete(item) {

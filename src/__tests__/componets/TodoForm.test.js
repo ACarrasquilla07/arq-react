@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, getByTestId } from 'react-testing-library'
-import { Todo } from "../../context/todo";
+import { Todo } from "../../context/context";
 import TodoConsumer from "../../api/TodoConsumer";
 import TodoForm from "../../components/TodoForm";
 
