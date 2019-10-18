@@ -15,7 +15,8 @@
     "react-testing-library": "^5.6.0"
   },
   "scripts": {
-    "start": "react-scripts start | ./node_modules/.bin/json-server --watch db.json --port 8080",
+    "start": "react-scripts start",
+    "back": "./node_modules/.bin/json-server --watch db.json --port 8080",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "test:coverage": "react-scripts test --env=jsdom  --coverage",
