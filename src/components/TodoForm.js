@@ -30,7 +30,7 @@ const TodoForm = () => {
   }
   return (<>
     <Form
-      error={error}
+        error={error}
       todo={todo}
       handleTodoAdd={handleTodoAdd}
       handleSubmitForm={handleSubmitForm}
@@ -55,7 +55,7 @@ const Form = ({ todo, error, handleTodoAdd, handleSubmitForm, handleTodoChange }
           onChange={handleTodoChange}
         />
 
-        <div   className="input-group-append">
+        <div className="input-group-append">
           <button data-testid="btn-add" className="btn btn-primary" onClick={handleTodoAdd}>
             Add
           </button>
