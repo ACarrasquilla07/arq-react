@@ -1,5 +1,5 @@
 import React, {
- useContext, useEffect, useState, useCallback 
+  useContext, useEffect, useState,
 } from 'react';
 import { GlobalContext } from '../context/context';
 import TodoHeader from './TodoHeader';
@@ -48,34 +48,34 @@ function heander(state) {
 }
 
 const List = ({ state, handleComplete }) => (
-<div className="row">
-  <div className="col-md-12">
-    <div className="row">
-      <div className="col-md-12">
-        <br />
-        {heander(state)}
+  <div className="row">
+    <div className="col-md-12">
+      <div className="row">
+        <div className="col-md-12">
+          <br />
+          {heander(state)}
+        </div>
       </div>
-    </div>
-    <div className="row">
-      <div className="col-md-12">
-        <ul className="list-group" data-testid="all-list">
-          {state.todos.map(t => (
-            <li key={t.id} className="list-group-item" >
-              {t.item}
-              <button
-                className="float-right btn btn-danger btn-sm"
-                style={{ marginLeft: 10 }}
-                onClick={() => handleComplete(t)}
-              >
-                Complete
-            </button>
-            </li>
-          ))}
-        </ul>
+      <div className="row">
+        <div className="col-md-12">
+          <ul className="list-group" data-testid="all-list">
+            {state.todos.map((t) => (
+              <li key={t.id} className="list-group-item">
+                {t.item}
+                <button
+                  className="float-right btn btn-danger btn-sm"
+                  style={{ marginLeft: 10 }}
+                  onClick={() => handleComplete(t)}
+                >
+                  Complete
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
 );
 
 export default TodoList;

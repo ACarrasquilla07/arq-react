@@ -1,8 +1,7 @@
-import React from "react";
+import React from 'react';
 
-// Initial Data
 export const GlobalContext = React.createContext({
-    todos: []
+  todos: [],
 });
 
 export default GlobalContext;

@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
-import { GlobalContext } from "../context/context";
-import TodoConsumer from "../api/TodoConsumer";
+import React, { useContext, useState } from 'react';
+import { GlobalContext } from '../context/context';
+import TodoConsumer from '../api/TodoConsumer';
 
 const TodoForm = () => {
   const { dispatch } = useContext(GlobalContext);
 
-  const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState('');
   const [error, setError] = useState(null);
 
   function handleTodoChange(e) {
@@ -15,8 +15,8 @@ const TodoForm = () => {
   function handleTodoAdd() {
     TodoConsumer.add(todo, (status) => {
       if (!status.error) {
-        dispatch({ type: "ADD_TODO", payload: status.item });
-        setTodo("");
+        dispatch({ type: 'ADD_TODO', payload: status.item });
+        setTodo('');
       } else {
         setError(status.error);
       }
@@ -30,7 +30,7 @@ const TodoForm = () => {
   }
   return (<>
     <Form
-        error={error}
+      error={error}
       todo={todo}
       handleTodoAdd={handleTodoAdd}
       handleSubmitForm={handleSubmitForm}
@@ -40,16 +40,18 @@ const TodoForm = () => {
 };
 
 
-const Form = ({ todo, error, handleTodoAdd, handleSubmitForm, handleTodoChange }) =>
+const Form = ({
+  todo, error, handleTodoAdd, handleSubmitForm, handleTodoChange,
+}) => (
   <div className="row">
     <div className="col-md-12">
       <br />
       <div className="input-group">
         <input
           data-testid="input-data"
-          className={(error && "form-control is-valid") || "form-control"}
+          className={(error && 'form-control is-valid') || 'form-control'}
           value={todo}
-          autoFocus={true}
+          autoFocus
           placeholder="Enter new todo"
           onKeyUp={handleSubmitForm}
           onChange={handleTodoChange}
@@ -61,8 +63,9 @@ const Form = ({ todo, error, handleTodoAdd, handleSubmitForm, handleTodoChange }
           </button>
         </div>
       </div>
-      {error && <small className="text-danger" >Request failed</small>}
+      {error && <small className="text-danger">Request failed</small>}
     </div>
-  </div>;
+  </div>
+);
 
 export default TodoForm;
