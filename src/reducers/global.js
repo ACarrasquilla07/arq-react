@@ -2,10 +2,10 @@ export default function reducer(state, action) {
 
   if (!action.type) {
     if (action.key instanceof Array) {
-      // console.log('state', state.setIn(action.key, action.payload).toJS());
+      console.log('state', state.setIn(action.key, action.payload).toJS());
       return state.setIn(action.key, action.payload);
     }
-    // console.log('state', state.set(action.key, action.payload).toJS());
+    console.log('state', state.set(action.key, action.payload).toJS());
     return state.set(action.key, action.payload);
   }
 

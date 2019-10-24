@@ -12,7 +12,8 @@
     "react-scripts": "2.0.3",
     "react-router-dom": "^5.0.0",
     "bootstrap": "4.1.3",
-    "bootstrap-sass": "^3.4.1"
+    "bootstrap-sass": "^3.4.1",
+    "immutable": "^4.0.0-rc.12"
   },
   "devDependencies": {
     "json-server": "^0.14.2",

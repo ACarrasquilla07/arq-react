@@ -1,4 +1,5 @@
 import React, { useContext, useReducer } from 'react';
+import { fromJS } from 'immutable';
 import { Switch, Route } from 'react-router-dom';
 
 import reducers from '../reducers/global';
@@ -9,7 +10,7 @@ import TopBar from '../components/TopBar';
 import Login from '../components/Login';
 
 export default () => {
-  const globalStore = useContext(Context);
+  const globalStore = fromJS(useContext(Context));
   const [state, dispatch] = useReducer(reducers, globalStore);
   return (
     <Context.Provider value={{ state, dispatch }}>
