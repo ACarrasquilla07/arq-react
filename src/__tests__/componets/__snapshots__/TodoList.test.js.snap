@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<TodoList /> #display 1`] = `"<li class=\\"list-group-item\\">task 1<button class=\\"float-right btn btn-danger btn-sm\\" style=\\"margin-left: 10px;\\">Complete</button></li><li class=\\"list-group-item\\">task 2<button class=\\"float-right btn btn-danger btn-sm\\" style=\\"margin-left: 10px;\\">Complete</button></li><li class=\\"list-group-item\\">task 3<button class=\\"float-right btn btn-danger btn-sm\\" style=\\"margin-left: 10px;\\">Complete</button></li>"`;
