@@ -8,6 +8,7 @@ export const GlobalContext = React.createContext({
     fields: {
       usuario: { value: '', error: '' },
       clave: { value: '', error: '' },
+      telefono: { value: '', error: 'Debes ingresar este campo' },
     },
   },
 });

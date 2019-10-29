@@ -6,14 +6,15 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
-    "eslint-config-airbnb": "^18.0.1",
-    "react": "next",
-    "react-dom": "next",
-    "react-scripts": "2.0.3",
-    "react-router-dom": "^5.0.0",
-    "bootstrap": "4.1.3",
+    "bootstrap": "^4.1.3",
     "bootstrap-sass": "^3.4.1",
-    "immutable": "^4.0.0-rc.12"
+    "eslint-config-airbnb": "^18.0.1",
+    "immutable": "^4.0.0-rc.12",
+    "react": "next",
+    "react-bootstrap": "^1.0.0-beta.14",
+    "react-dom": "next",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "2.0.3"
   },
   "devDependencies": {
     "json-server": "^0.14.2",

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import Context from '../context/context';
+import Input from '../shared/form/Input';
 
 const Login = ({ history }) => {
 
@@ -13,15 +14,12 @@ const Login = ({ history }) => {
   }
 
   return (
-    <div className="row card-deck">
+    <div className="row col-12">
 
-      <div className="card col-md-6">
-        <div className="img-login">
-          Imagen
-        </div>
-      </div>
-      <div className="card col-md-6">
+      <div className="card col-md-6 col-sm-12" style={{ background: '#ED1C29' }} />
+      <div className="card col-md-6 col-sm-12">
         <form
+          className="container"
           onSubmit={() => {
             login();
           }}
@@ -39,6 +37,8 @@ const Login = ({ history }) => {
 
           <span>Clave</span>
           <input type="password" id="lname" name="lastname" placeholder="Tu clave" />
+
+          <Input field="telefono" nameState="formLogin" label="Telefono" />
 
           <span>Rol</span>
           <select id="country" name="country">

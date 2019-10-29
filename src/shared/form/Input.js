@@ -13,21 +13,17 @@ const Input = (props) => {
     optional,
     maxLength,
     label,
-    type,
   } = props;
   const { error, value } = state.getIn([nameState, 'fields', field]).toJS();
   return (
     <div className="form-group">
-      <label
-        className="control-label"
-        htmlFor="example-input-normal"
-      >
+      <span>
         {`${label}${optional ? '' : ' *'}`}
-      </label>
+      </span>
       <input
         id={`id_${field}`}
         className="form-control"
-        type={type}
+        type="text"
         maxLength={maxLength}
         value={value}
         onChange={(e) => dispatch({
@@ -38,7 +34,7 @@ const Input = (props) => {
         onBlur={onBlur}
       />
       {error && (
-        <span id={`id_${field}Error`} className="error">
+        <span id={`id_${field}Error`} className="error-input">
           {error}
         </span>
       )}
